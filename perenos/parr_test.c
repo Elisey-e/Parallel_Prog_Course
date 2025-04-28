@@ -30,6 +30,7 @@ double f(double t, double x) {
 
 int main(int argc, char *argv[]) {
     int rank, size;
+    double start_time, end_time;
     double tau = T / K;       // time step
     double h = X / M;         // space step
     
@@ -37,6 +38,11 @@ int main(int argc, char *argv[]) {
     MPI_Init(&argc, &argv);
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     MPI_Comm_size(MPI_COMM_WORLD, &size);
+    
+    // Start timing (only rank 0 needs to track the total time)
+    if (rank == 0) {
+        start_time = MPI_Wtime();
+    }
     
     // Check stability condition for cross scheme
     if (rank == 0) {
@@ -268,6 +274,22 @@ int main(int argc, char *argv[]) {
             free(snapshots[s]);
         }
         free(snapshots);
+        
+        // Calculate and print execution time
+        end_time = MPI_Wtime();
+        printf("Total execution time: %.4f seconds\n", end_time - start_time);
+        double exec_time = end_time - start_time;
+        
+        // Выводим время выполнения в стандартный формат для удобства сбора данных
+        printf("%d,%.4f\n", size, exec_time);
+        
+        // Также сохраняем в файл
+        FILE *time_file = fopen("execution_times.csv", "a");
+        if (time_file != NULL) {
+            fprintf(time_file, "%d,%.4f\n", size, exec_time);
+            fclose(time_file);
+        }
+
     }
     
     // Cleanup

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <time.h>
 
 // Parameters for the transport equation
 #define A 1.0         // coefficient 'a' in the equation
@@ -28,6 +29,11 @@ double f(double t, double x) {
 }
 
 int main() {
+    clock_t start_time, end_time;
+    double cpu_time_used;
+    
+    start_time = clock(); // Засекаем время начала выполнения
+    
     double tau = T / K;       // time step
     double h = X / M;         // space step
     
@@ -117,6 +123,11 @@ int main() {
         free(u[k]);
     }
     free(u);
+    
+    // Вычисляем и выводим время выполнения
+    end_time = clock();
+    cpu_time_used = ((double) (end_time - start_time)) / CLOCKS_PER_SEC;
+    printf("Program execution time: %.4f seconds\n", cpu_time_used);
     
     return 0;
 }
