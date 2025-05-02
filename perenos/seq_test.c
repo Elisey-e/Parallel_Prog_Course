@@ -7,8 +7,8 @@
 #define A 1.0         // coefficient 'a' in the equation
 #define T 1.0         // max time
 #define X 1.0         // max x coordinate
-#define K 100000        // number of time steps
-#define M 100000         // number of space steps
+#define K 1000        // number of time steps
+#define M 100         // number of space steps
 #define NUM_SNAPSHOTS 9  // Number of time snapshots to save
 #define NUM_SNAP_SAVE 3
 

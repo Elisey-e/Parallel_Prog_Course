@@ -1,0 +1,20 @@
+Parent process 1 of 2 started
+MPI_UNIVERSE_SIZE = 8
+Parent process 0 of 2 started
+MPI_UNIVERSE_SIZE = 8
+Child process 0 of 4 running on node0
+Child process 0: Sent 100 to process 1
+Child process 0: Received 103 from process 3
+Child process 1 of 4 running on node0
+Child process 1: Received 100 from process 0
+Child process 1: Sent 101 to process 2
+Child process 2 of 4 running on node0
+Child process 2: Received 101 from process 1
+Child process 2: Sent 102 to process 3
+Child process 3 of 4 running on node0
+Child process 3: Received 102 from process 2
+Child process 3: Sent 103 to process 0
+Parent process 1: Spawned 4 child processes
+Parent process 0: Spawned 4 child processes
+Child process 0: Sent completion confirmation to parent 0
+Parent process 0: Received confirmation from child process: 1

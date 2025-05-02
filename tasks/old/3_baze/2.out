@@ -1,0 +1,6 @@
+Thread 0 calculated partial sum: 2.436979
+Thread 1 calculated partial sum: 1.871243
+Thread 2 calculated partial sum: 1.652080
+Thread 3 calculated partial sum: 1.525169
+
+The partial sum of the harmonic series up to 1000 is: 7.485470860550341
